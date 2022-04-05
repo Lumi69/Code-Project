@@ -1,0 +1,78 @@
+var difficulty = 0;
+var type = 0;
+var mastery = 0;
+
+var characters = ["Sol Badguy", "Ky Kiske", "May", "Axl Low", "Chipp Zanuff", "Potemkin", "Faust", "Millia Rage", "Zato-1", "Ramlethal Valentine", "Leo Whitefang", "Nagoriyuki", "Giovanna", "Anji Mito", "I-No", "Goldlewis Dickinson", "Jack-O'", "Happy Chaos", "Baiken", "Testament"];
+var characterImages = ["solBadguy", "kyKiske", "may", "axlLow", "chippZanuff", "potemkin", "faust", "milliaRage", "zato1", "ramlethalValentine", "leoWhitefang", "nagoriyuki", "giovanna", "anjiMito", "iNo", "goldlewisDickinson", "jackO", "happyChaos", "baiken", "testament"];
+//These characters are from Guilty Gear -Strive-, published and owned by ArcSystemWorks.
+
+playSound("Guilty-Gear--STRIVE--OST-Smell-of-the-game-(Instrumental-Ver.).mp3", true);
+//This song is also from Guilty Gear -Strive-, published and owned by ArcSystemWorks. This was made by Daisuke Ishiwatari
+
+onEvent("difficultyList", "change", function( ) {
+  difficulty = getText("difficultyList");
+});
+
+onEvent("typeList", "change", function( ) {
+  type = getText("typeList");
+});
+
+onEvent("masteryList", "change", function( ) {
+  mastery = getText("masteryList");
+});
+
+onEvent("calculateButton", "click", function( ) {
+  setScreen("resultScreen");
+  calculateFunction();
+});
+//These onEvents exist to adjust the variables in Lines 1-3, which will then later be used for the function below.
+
+function calculateFunction() {
+  if (difficulty == "1*") {
+    removeItem(characters, 0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19);
+    removeItem(characterImages, 0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19);
+  } else if ((difficulty == "2*")) {
+    removeItem(characters, 0, 1, 2, 3, 4, 5, 8, 9, 10, 12, 13, 15, 18, 19);
+    removeItem(characterImages, 0, 1, 2, 3, 4, 5, 8, 9, 10, 12, 13, 15, 18, 19);
+  } else if ((difficulty == "3*")) {
+    removeItem(characters, 0, 1, 3, 6, 7, 8, 11, 12, 14, 16, 17, 18, 19);
+    removeItem(characterImages, 0, 1, 3, 6, 7, 8, 11, 12, 14, 16, 17, 18, 19);
+  } else if ((difficulty == "4*")) {
+    removeItem(characters, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17);
+    removeItem(characterImages, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17);
+  } else {
+    removeItem(characters, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19);
+    removeItem(characterImages, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19);
+  }
+  
+  if (type == "Balance") {
+    removeItem(characters, 3, 4, 5, 7, 8, 9, 11, 12, 14, 15, 16, 17);
+    removeItem(characterImages, 3, 4, 5, 7, 8, 9, 11, 12, 14, 15, 16, 17);
+  } else if ((type == "Range")) {
+    removeItem(characters, 0, 1, 2, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 18, 19);
+    removeItem(characterImages, 0, 1, 2, 4, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 18, 19);
+  } else if ((type == "Speed")) {
+    removeItem(characters, 0, 1, 2, 3, 5, 6, 8, 9, 10, 13, 15, 16, 17, 18, 19);
+    removeItem(characterImages, 0, 1, 2, 3, 5, 6, 8, 9, 10, 13, 15, 16, 17, 18, 19);
+  } else if ((type == "Power")) {
+    removeItem(characters, 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 12, 13, 14, 16, 17, 18, 19);
+    removeItem(characterImages, 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 12, 13, 14, 16, 17, 18, 19);
+  } else {
+    removeItem(characters, 0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19);
+    removeItem(characterImages, 0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19);
+  }
+  
+  if (mastery == "Easy") {
+    removeItem(characters, 3, 4, 5, 6, 7, 8, 10, 11, 13, 14, 15, 16, 17, 18, 19);
+    removeItem(characterImages, 3, 4, 5, 6, 7, 8, 10, 11, 13, 14, 15, 16, 17, 18, 19);
+  } else if ((mastery == "Medium")) {
+    removeItem(characters, 0, 1, 2, 3, 8, 9, 12, 16, 17);
+    removeItem(characterImages, 0, 1, 2, 3, 8, 9, 12, 16, 17);
+  } else {
+    removeItem(characters, 0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 15, 18, 19);
+    removeItem(characterImages, 0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 15, 18, 19);
+  }
+  characters = randomNumber(0, characters.length - 1);
+  setText("resultCharacter", "Your Main Is: " + characters);
+  //Once those variables are edited through clicking any of them in their respected dropdowns, certain variables will be removed and some will remain. It will then pick a random variable out of the list that's still there and paste as part of the text in the app.
+}
